@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -9,8 +7,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float _timeRate = 2.0f;
     [SerializeField] private List<SpawnPoint> _spawnPoints;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         InvokeRepeating(nameof(Spawn), 0, _timeRate);
     }

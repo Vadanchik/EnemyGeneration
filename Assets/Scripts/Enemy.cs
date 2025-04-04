@@ -1,19 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float _movementSpeed;
 
+    private Vector3 _movementDirection;
+
     private void Update()
     {
-        transform.Translate(Vector3.forward * _movementSpeed * Time.deltaTime);
+        Move();
     }
 
     public void Init(Vector3 position, Vector3 direction)
     {
         transform.position = position;
+        _movementDirection = direction;
         transform.rotation = Quaternion.LookRotation(direction);
+    }
+
+    private void Move()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, transform.position + _movementDirection, _movementSpeed * Time.deltaTime);
     }
 }
