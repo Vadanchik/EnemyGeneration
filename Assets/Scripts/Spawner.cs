@@ -10,7 +10,7 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating(nameof(Spawn), 0, _timeRate);
+        StartCoroutine(SpawnRepeating());
     }
 
     private void Spawn()
