@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,9 +26,15 @@ public class Spawner : MonoBehaviour
         return new Vector3(direction.x, 0, direction.z).normalized;
     }
 
-    [ContextMenu(nameof(FindSpawnPoints))]
-    private void FindSpawnPoints()
+    private IEnumerator SpawnRepeating()
     {
-        _spawnPoints = new List<SpawnPoint>(FindObjectsOfType<SpawnPoint>());
+        WaitForSeconds wait = new WaitForSeconds(_timeRate);
+
+        while (enabled)
+        {
+            Spawn();
+
+            yield return wait;
+        }
     }
 }
